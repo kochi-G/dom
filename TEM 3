@@ -1,0 +1,268 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>წიგნების საცავი(საცავი)</title>
+		<style>
+		header{
+		  background-color: #99ffbb;
+		  height: 100px;
+		  text-align: center;
+		}
+		h1{
+		  padding-top: 20px;
+		}
+		footer{
+		  background-color: #99ffbb;
+		  text-align: center;
+		}
+		nav{
+		  background-color: #aaaa55;
+		}
+		img{
+		  height:50px;
+		}
+		div.Main{
+		  border: 1px solid green;
+		  margin-left: 100px;
+		  width: 200px;
+		}
+		div.TR{
+		  margin: 10px;
+		}
+		#Note{
+		  font-size: 25px;
+		  color: red;
+		  font-weight: bold;
+		}
+		#result{
+		  font-size: 15px;
+		}
+		</style>
+	</head>
+
+	<body>
+	  <header><h1>წიგნების საცავი და საძიები</h1></header>
+	  <nav>
+	     <!--<a href="index.html">მთავარი</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	     <a href="aboutUs.html">ჩვენს შესახებ</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	     <a href="sacavi.html">საცავი</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	     <a href="registracia.html">რეგისტრაცია</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
+	  </nav>
+	  <section>
+	    <article><br><br>
+		  <form action="save.php" method="post">
+		    <div class="Main">
+		      <div class="TR"><input type="text" name="avtori" id="avtori" placeholder="ავტორი" required></div>
+			  <div class="TR"><input type="text" name="dasaxeleba" id="dasaxeleba" placeholder="წიგნის დასახელება"></div>
+			  <div class="TR"><input type="text" name="weli" id="weli" placeholder="გამოცემის წელი"></div>
+			  <div class="TR"><input type="text" name="gamomcemloba" id="gamomcemloba" placeholder="გამომცემლობა"></div>
+			  <div class="TR"><input type="text" name="fasi" id="fasi"  placeholder="ფასი"></div>
+			  <div class="TR">
+			    <!--<input type="submit" value="საძიებო">-->
+				<input type="button" value="საძიებო" onclick="Find();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type = "reset">
+			  </div>
+			  
+			</div>
+		  </form>
+		  <p id="Note"></p>
+		  <p id="result"></p>
+		  <br><br>
+		  <script>
+		    let Books = [
+		                {"Autor":"ილია ჭავჭავაძე"
+						,"BookName":"წერილები ლიტერატურასა და ხელოვნებაზე"
+						,"Year":1986
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"1.jpg"
+						},
+					    {"Autor":"ილია ჭავჭავაძე"
+						,"BookName":"მოგონებები გარდასულ დღეთა"
+						,"Year":1987
+						,"Editor":"მერანი"
+						,"Fasi":"15 ლარი"
+						,"ImgCover":"2.jpg"
+						},
+						{"Autor":"ლევან სანიკიძე"
+						,"BookName":"უქარქაშო ხმლები"
+						,"Year":1986
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"3.jpg"
+						},
+						{"Autor":"კონსტანტინე გამსახურდია"
+						,"BookName":"მთვარის მოტაცება"
+						,"Year":1990
+						,"Editor":"მერანი"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"4.jpg"
+						},
+						{"Autor":"კონსტანტინე გამსახურდია"
+						,"BookName":"დავით აღმაშენებელი"
+						,"Year":1989
+						,"Editor":"მერანი"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"5.jpg"
+						},
+						{"Autor":"ოთარ ჩხეიძე"
+						,"BookName":"რკალი"
+						,"Year":1986
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"6.jpg"
+						},
+						{"Autor":"ალექსანდრე კალანდაძე"
+						,"BookName":"სახიფათო მოსახვევები"
+						,"Year":1990
+						,"Editor":"მერანი"
+						,"Fasi":"7 ლარი"
+						,"ImgCover":"7.jpg"
+						},
+						{"Autor":"ა.ს.პუშკინი"
+						,"BookName":"მოთხრობები"
+						,"Year":1970
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"10 ლარი"
+						,"ImgCover":"8.jpg"
+						},
+						{"Autor":"იოანე ბატონიშვილი"
+						,"BookName":"ხუმარსწავლა"
+						,"Year":1990
+						,"Editor":"მერანი"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"9.jpg"
+						},
+						{"Autor":"გრიგოლ აბაშიძე"
+						,"BookName":"ცოტნე&ყორნალი"
+						,"Year":1982
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"10.jpg"
+						},
+						{"Autor":"აკაკი წერეთელი"
+						,"BookName":"ჩემი თავგადასავალი"
+						,"Year":1989
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"11.jpg"
+						},
+						{"Autor":"სერგი დურმიშიძე"
+						,"BookName":"ზოგი რამ წარსულიდან"
+						,"Year":1987
+						,"Editor":"მეცნიერება"
+						,"Fasi":"8 ლარი"
+						,"ImgCover":"12.jpg"
+						},
+						{"Autor":"არჩილ სულაკაური"
+						,"BookName":"სამი რომანი"
+						,"Year":1988
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"6 ლარი"
+						,"ImgCover":"13.jpg"
+						},
+						{"Autor":"მამია ჩორგოლაშვილი"
+						,"BookName":"ფრესკის ღიმილი"
+						,"Year":1978
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"7 ლარი"
+						,"ImgCover":"14.jpg"
+						},
+						{"Autor":"გურამ ფანჯიკიძე"
+						,"BookName":"თხზულებანი"
+						,"Year":1987
+						,"Editor":"საბჭოთა საქართველო"
+						,"Fasi":"5 ლარი"
+						,"ImgCover":"15.jpg"
+						},
+		              ];
+			document.write("<table border='1'>");
+			
+			for( i = 0; i < Books.length; i++){
+				document.write("<tr>");
+					document.write("<td align='right'>" + (i+1) + ".</td>");
+					document.write("<td><img src='potoebi/" + Books[i].ImgCover + "'></td>");
+					document.write("<td>" + Books[i].Autor + "`</td>");
+					document.write("<td>" + Books[i].BookName + "</td>");
+					document.write("<td>" + Books[i].Year + "</td>");
+					document.write("<td>" + Books[i].Editor + "</td>");
+					document.write("<td>" + Books[i].Fasi + "</td>");
+				document.write("</tr>");
+			}
+			
+			document.write("</table>");
+			
+			function Find(){
+			  document.getElementById("Note").innerHTML = "";
+			  
+			  if( document.getElementById("avtori").value.length  == 0 
+				   && document.getElementById("dasaxeleba").value.length == 0
+				   && document.getElementById("weli").value.length == 0
+				   && document.getElementById("gamomcemloba").value.length == 0
+				   && document.getElementById("fasi").value.length == 0)
+			  {
+			   document.getElementById("Note").innerHTML = "გთხოვთ შეავსოთ ერთი საძიებო პარამეტრ მაინც!"; 
+			  }
+			  else{
+				F_avtori       = document.getElementById("avtori").value;
+				F_dasaxeleba   = document.getElementById("dasaxeleba").value;
+			    F_weli         =  document.getElementById("weli").value;
+				F_gamomcemloba = document.getElementById("gamomcemloba").value;
+				F_fasi         = document.getElementById("fasi").value;
+				
+				var find = "<h3>მოიძებნა</h3><table border='1'>";
+				for( i = 0; i < Books.length; i++){
+				  if(F_avtori.length > 0 &&  Books[i].Autor.indexOf(F_avtori) != -1){
+					find = find + "<tr><td>" + Books[i].Autor + "</td>" 
+					                        + "<td>" + Books[i].BookName + "</td>"
+											+ "<td>" + Books[i].Year + "</td>" 
+											+ "<td>" + Books[i].Editor + "</td>" 
+											+ "<td>" + Books[i].Fasi + "</td></tr>" ;
+				  }
+				  else
+				  if(F_dasaxeleba.length > 0 && Books[i].BookName.indexOf(F_dasaxeleba) != -1){
+				    find = find + "<tr><td>" + Books[i].Autor + "</td>" 
+					                        + "<td>" + Books[i].BookName + "</td>"
+											+ "<td>" + Books[i].Year + "</td>" 
+											+ "<td>" + Books[i].Editor + "</td>" 
+											+ "<td>" + Books[i].Fasi + "</td></tr>" ;
+				  }
+				  else
+				  if(F_weli.length > 0 &&  Books[i].Year == F_weli){
+				    find = find + "<tr><td>" + Books[i].Autor + "</td>" 
+					                        + "<td>" + Books[i].BookName + "</td>"
+											+ "<td>" + Books[i].Year + "</td>" 
+											+ "<td>" + Books[i].Editor + "</td>" 
+											+ "<td>" + Books[i].Fasi + "</td></tr>" ;
+				  }
+				  else
+				  if(F_gamomcemloba.length > 0 && Books[i].Editor.indexOf(F_gamomcemloba) != -1){
+				    find = find + "<tr><td>" + Books[i].Autor + "</td>" 
+					                        + "<td>" + Books[i].BookName + "</td>"
+											+ "<td>" + Books[i].Year + "</td>" 
+											+ "<td>" + Books[i].Editor + "</td>" 
+											+ "<td>" + Books[i].Fasi + "</td></tr>" ;
+				  }
+				  else
+				  if(F_fasi.length > 0 && Books[i].Fasi.indexOf(F_fasi) != -1){
+				    find = find + "<tr><td>" + Books[i].Autor + "</td>" 
+					                        + "<td>" + Books[i].BookName + "</td>"
+											+ "<td>" + Books[i].Year + "</td>" 
+											+ "<td>" + Books[i].Editor + "</td>" 
+											+ "<td>" + Books[i].Fasi + "</td></tr>" ;
+					
+				  }
+				}
+				find = find + "<table>";
+				document.getElementById("result").innerHTML = find;
+				//console.log (find);
+			  }
+			}
+		  </script>
+		</article>
+	  </section>
+	  <footer>ყველა უფლება დაცულია &copy; 2023</footer>
+	</body>
+</html>
