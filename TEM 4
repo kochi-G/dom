@@ -1,0 +1,94 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>target shooting</title>
+		<style>
+		header{
+		  background-color: #99ffbb;
+		  height: 100px;
+		  text-align: center;
+		}
+		h1{
+		  padding-top: 20px;
+		}
+		footer{
+		  background-color: #99ffbb;
+		  text-align: center;
+		}
+		nav{
+		  background-color: #aaaa55;
+		}
+		img{
+		  height:200px;
+		}
+		#result{
+		  font-size: 15px;
+		}
+		p{
+		  font-size: 25px;
+		  color: green;
+		  font-weight: bold;
+		}
+		</style>
+	</head>
+
+	<body>
+	  <header><h1>target shooting</h1></header>
+	  <nav>
+	     
+	  </nav>
+	  <section>
+	    <article>
+		<br><br>
+		<p id ="result"></p>
+		<br><br>
+		<img src="images/1.png" ><img src="images/isari.png" >
+		  <script>
+		  var pictures = [ "1.png"
+						  ,"2.png"
+						  ,"3.png"
+						  ,"4.png"
+						  ,"5.png"
+						  ,"6.png"
+						  ,"7.png"
+						  ,"8.png"
+						 ];
+		  let i = 0;
+		  function triali(){
+			i++;
+			if(i > 8){
+			  i = 0;
+			}
+			else{
+			  document.images[0].src = "images/" + i + ".png";
+			}
+		  }
+		  function Start(){
+		    i = 0;
+		    document.getElementById("result").innerHTML = "შედეგი";
+		    tread = setInterval(triali,10);
+		  }
+		  function Stop(){
+			clearInterval(tread);
+			console.log(i);
+			if(i == 2){
+			  document.getElementById("result").style.color = "green";
+			  document.getElementById("result").innerHTML = "არის, თქვენ მოარტყით მიზანში!";
+			}
+			else{
+			  document.getElementById("result").style.color = "red";
+			  document.getElementById("result").innerHTML = "თქვენ ვერ მოარტყით მიზანში!";
+			}
+		  }
+		  </script><br><br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  <button onclick="Start();">Start</button>
+		  &nbsp;&nbsp;&nbsp;<button  onclick="Stop();">Stop</button><br><br>
+		  
+		</article>
+	  </section>
+	  <footer>ყველა უფლება დაცულია &copy; 2023</footer>
+	</body>
+</html>
