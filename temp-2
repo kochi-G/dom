@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>დასაწყობება</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+		*{
+			box-sizing: border-box;
+		}
+		@media only screen and (max-width: 600px) {
+			body {
+				/*background-color: lightblue;*/
+			}
+		}
+		
+		</style>
+		
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+header{
+	background-color: green;
+	color: white;
+	height: 100px;
+	text-align: center;
+	padding-top: 10px;
+}
+footer{
+	background-color: green;
+	color: white;
+	height: 70px;
+	text-align: center;
+	padding-top: 10px;
+}
+/* Add padding to containers */
+.container {
+  padding-left: 400px;
+  background-color: white;
+  width: 70%;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 48%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+table{
+	border-collapse: collapse;
+	font-size: 12px;
+}
+</style>	
+	</head>
+	<body>
+	<header>
+		<h2>მაღაზია "მაგნიტი"<br>დასაწყობება</h2>
+	</header>
+	<div class="container">
+	  <i class="fa fa-truck" style="font-size:8em;color:blue"></i>
+	  <table border='1' id='kalaTaSi' >
+	  </table>
+	  <form id="Salaro">
+	  
+		
+		<hr>
+
+		<label for="PructName"><b>პროდუქტის დასახელება</b></label>
+		<input type="text" placeholder="პროდუქტის დასახელება" name="PructName" id="PructName" >
+
+		
+		
+		<label for="zomis_erTeuli"><b>ზომის ერთეული</b></label>
+		<!--<input type="number" name="zomis_erTeuli" id="zomis_erTeuli">-->
+		<select name="zomis_erTeuli" id="zomis_erTeuli">
+			<option></option>
+			<option>კგ</option>
+			<option>ყუთი</option>
+			<option>ცალი</option>
+			<option>ბოთლი</option>
+			<option>კოლოფი</option>
+			<option>ლიტრი</option>
+			<option>შეფუთვა</option>
+		</select><br><br>
+		<label for="NUM"><b>რაოდენობა</b></label>
+		<input type="number" name="NUM" id="NUM" value="1"><br><br>
+		<label for="price"><b>ერთეულის ფასი</b></label>
+		<input type="text" placeholder="ერთეულის ფასი" name="erTeulis_fasi" id="erTeulis_fasi" >
+		
+		<hr>
+		<p id="Note" style="color:red;font-size:20px;font-weight:bold;"></p>
+		<button type="button" onclick="kalaTa();" class="registerbtn">მიღება</button>
+		
+		<button type="button" onclick="Tanxasul();" class="registerbtn" style="background-color: blue;">სულ:</button>
+	
+		<button onclick="Clear();" class="registerbtn" style="background-color: red;">წაშლა</button>
+	  </div>
+	  
+	</form>
+	  <script>
+	    class Product{
+		  constructor(Name,Number,z_erTeuli,Price){
+		    this.Name        = Name;
+			this.Number      = Number;
+			this.z_erTeuli   = z_erTeuli;
+			this.Price       = Price;
+		  }
+		  PropertiesConcat(n,N,z,p){
+		    return this.Name + " "  + this.Number + this.z_erTeuli + " "+ this.Price; 
+		  }
+		}
+		
+		var Prodacts = [];
+		
+		var Jami = 0;
+		
+		var N = 0;    // N - კალათში პროდუქტების რაოდენობა
+		var Sum = 0;  // Sum - კალათაში პროდუქტების ღირებულებათა ჯამი
+		document.getElementById("kalaTaSi").innerHTML = "<tr>"
+															+ "<th>პროდუქტის<br>დასახელება</th>"
+															+ "<th>რაოდენობა</th>"
+															+ "<th>ზომის<br>ერთეული</th>"
+															+ "<th>ერთეულის<br>ფასი(₾)</th>"
+															+ "<th>თანხა</th>"
+													  + "</tr>";
+		function kalaTa(){
+		  
+		  document.getElementById("Note").innerHTML = "";
+		  if(document.getElementById("PructName").value.length == 0){
+			document.getElementById("Note").innerHTML = "გთხოვთ შემოიტანოთ პროდუქტის დასახელება";
+		  }
+		  else
+		  if( document.getElementById("zomis_erTeuli").selectedIndex == 0 ){
+		    document.getElementById("Note").innerHTML = "გთხოვთ შემოიტანოთ ზომის ერთეული";
+		  }
+		  else
+		  if( document.getElementById("erTeulis_fasi").value.length == 0 ){
+		    document.getElementById("Note").innerHTML = "გთხოვთ შემოიტანოთ ერთეულის ფასი";
+		  }
+		  /*else
+		  if( document.getElementById("price").value.length == 0 ){
+		    document.getElementById("Note").innerHTML = "გთხოვთ შემოიტანოთ პროდუქტის ღირებულება";
+		  }*/
+		  else
+		  if( N >= 0){
+		    Prodacts[N] = new Product(
+						 document.getElementById("PructName").value
+						,document.getElementById("NUM").value
+						,document.getElementById("zomis_erTeuli").value
+						,document.getElementById("erTeulis_fasi").value
+			);
+			
+			Sum = Sum + Prodacts[N].Price * Prodacts[N].Number;
+			Sum = Math.round(Sum * 100)/100;
+			console.log(Prodacts[N].PropertiesConcat(document.getElementById("PructName").value
+						,document.getElementById("NUM").value) + "Sum = " + Sum)
+						,document.getElementById("zomis_erTeuli").value
+						,document.getElementById("erTeulis_fasi").value;
+			Jami = Jami + Sum;
+			console.log("სულ : " + Jami);
+			document.getElementById("kalaTaSi").innerHTML = document.getElementById("kalaTaSi").innerHTML
+											+ "<tr>" 
+												+ "<td>" + Prodacts[N].Name + "</td>"
+												+ "<td align='right'>" + Prodacts[N].Number + "</td>"
+												+ "<td align='right'>" + Prodacts[N].z_erTeuli + "</td>"
+												+ "<td align='right'>" + Prodacts[N].Price + "</td>"
+												+ "<td align='right'>" + Sum + "</td>"
+											+ "</tr>";
+			document.getElementById("Salaro").reset();
+		  }
+		}
+		function Tanxasul(){
+		  //document.getElementById("kalaTaSi").innerHTML = Jami;
+		  document.getElementById("kalaTaSi").innerHTML = document.getElementById("kalaTaSi").innerHTML 
+					+ "<tr><td colspan='4' align='right'>სულ:</td><td align='right'>" + Jami + "</td></tr>";
+		}
+	  
+	    function Clear(){
+		  document.getElementById("kalaTaSi").innerHTML = "";
+		  document.getElementById("note").innerHTML = "";
+		  document.getElementById("Salaro").reset();
+		}
+	  </script>
+	  <footer><h3>ყველა უფლება დაცულია &copy; 2023</h3></footer>
+	</body>
+</html>
