@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>სამომხმარებლო კალათა</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+		
+		@media only screen and (max-width: 600px) {
+			body {
+					background-color: lightblue;
+			}
+			
+		}
+		</style>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+  width: 50%;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 49%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+#Note{
+	font-size: 20px;
+	color: red;
+	font-weight: bold;
+}
+table{
+	border-collapse: collapse;
+	font-size: 16px;
+}
+</style>	
+	</head>
+	<body>
+        <i class="fa fa-shopping-cart" style="font-size:10em;color:green;"></i>
+		<table border='1' id="ProdactList">
+			
+		</table>
+		<script>
+		class Product{
+		  constructor(Name,Price,Number){
+		    this.Name   = Name;
+			this.Price  = Price;
+			this.Number = Number
+		  }
+		  Unite(x,y,z){
+		    return this.Name + " " + this.Price + " " + this.Number;
+		  }
+		}
+		
+		var Prodacts = [];
+		
+		</script>
+		<form name="F_Product" id="F_Product">
+		  <div class="container">
+			<hr>
+
+			<label for="product"><b>პროდუქტის დასახელება</b></label>
+			<input type="text" placeholder="პროდუქტის დასახელება" name="product" id="product" >
+
+			<label for="price"><b>ღირებულება</b></label>
+			<input type="text" placeholder="ღირებულება" name="price" id="price" >
+
+			<label for="NUM"><b>რაოდენობა</b></label>
+			<input type="number" value="1" name="NUM" id="NUM" >
+			<hr>
+            <p id="Note"></p>
+			<button type="button" onclick="salaro();" class="registerbtn">დასტური</button>
+			<button type="button" onclick="JamiSul();" class="registerbtn">სულ ჯამი</button>
+			<button type="reset" class="registerbtn" style="background-color: red;">წაშლა</button>
+		  </div>
+		  
+		</form>
+	    <script>
+		var Jami = 0; // Jami -კალათაში პროდუქტების ჯამური თანხა
+		document.getElementById("ProdactList").innerHTML = 
+		      "<tr>"
+				+ "<th>პროდუქტის დასახელება</th>"
+				+ "<th>ერთეულის ფასი</th>"
+				+ "<th>რაოდენობა</th>"
+				+ "<th>თანხა</th>";
+			+ "</tr>";
+		function salaro(){
+		   var N = 0; // N - კალათაში პროდუცტების რაოდენობა
+		   document.getElementById("Note").innerHTML = "";
+		   //if( document.getElementById("product").value == ""){
+		   if( document.getElementById("product").value.length == 0){
+			  document.getElementById("Note").innerHTML = "გთხოვთ შეავსოთ პროდუქტის დასახელება";
+		   }
+		   else
+		   //if( document.getElementById("price").value == ""){
+		   if( document.getElementById("price").value.length == 0){
+		      document.getElementById("Note").innerHTML = "გთხოვთ შეავსოთ პროდუქტის ღირებულება";
+		   }
+		   else
+		   if( N >= 0){
+		     Prodacts[N] = new Product(
+				  document.getElementById("product").value
+				 ,document.getElementById("price").value
+				 ,document.getElementById("NUM").value);
+		     var Tanxa = Prodacts[N].Price * Prodacts[N].Number;
+			 Tanxa = Math.round(Tanxa * 100)/100;
+		     //console.log(document.getElementById("product").value);
+			 console.log(Tanxa);
+			 document.getElementById("F_Product").reset();
+			 Jami = Jami + Tanxa;
+			 console.log("Jami = " + Jami);
+			 document.getElementById("ProdactList").innerHTML = 
+			 document.getElementById("ProdactList").innerHTML
+		      + "<tr>"
+				+ "<td>" + Prodacts[N].Name  + "</td>"
+				+ "<td align='right'>" + Prodacts[N].Price  + "</td>"
+				+ "<td align='right'>" + Prodacts[N].Number  + "</td>"
+				+ "<td align='right'>" + Tanxa  + "</td>";
+			+ "</tr>";
+		   }
+		}
+		function JamiSul(){
+		  document.getElementById("ProdactList").innerHTML = 
+			 document.getElementById("ProdactList").innerHTML
+		      + "<tr>"
+				+ "<td colspan='3' align='right'>თანხა სულ:</td>"
+				+ "<td align='right'>" + Jami  + "</td>";
+			+ "</tr>";
+		}
+		</script>
+	</body>
+</html>
