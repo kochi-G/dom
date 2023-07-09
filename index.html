@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Application Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
+      }
+      p.top-info {
+      margin: 10px 0;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      /*form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 25px 0 #1c87c9; 
+      }
+	  */
+     .banner {
+      position: relative;
+      height: 210px;
+      /*background-image: url("/uploads/media/default/0001/02/fb57ab781c34da322c884532bfec751e843e36fc.jpeg");*/  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.6); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #1c87c9;
+      }
+      .item input:hover, .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #1c87c9;
+      color: #1c87c9;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 10px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      span.required {
+      margin-left: 0;
+      color: red;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid #1c87c9;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #1c87c9;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: auto;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #1c87c9;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #1e6fa0;
+      }
+      @media (min-width: 568px) {
+      .name-item, .contact-item, .position-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input {
+      width: calc(50% - 20px);
+      }
+      .contact-item .item, .position-item .item {
+      width: calc(50% - 8px);
+      }
+      .contact-item input, .position-item input {
+      width: calc(100% - 12px);
+      }
+      .position-item select {
+      width: 100%;
+      }
+      }
+    </style>
+  </head>
+  <body>	
+    <div class="testbox">
+	  <a href="" id="bmuli"><img  src="geo_flag.png" id="flag" width="100" style="margin: 30px;"></a>
+	  <!--                        src="usa_flag.png"></a>                 -->
+      <form action="/">
+        <div class="banner">
+		  
+          <h1 id="Job">
+			Job Application Form
+		  </h1>
+		  
+		  <script>
+			//var Lang = "?Lang=EN";	
+			
+			document.getElementById("bmuli").href = "index.html?Lang=EN";
+			document.getElementById("flag").src = "geo_flag.png";
+			Lang = location.search;
+			console.log("Lang(location) = " + Lang);
+			
+			if( Lang.length == 0 || Lang == "?Lang=EN" ){
+			  console.log("Lang(1) = " + Lang);
+			  
+			  document.getElementById("bmuli").href = "index.html?Lang=GE";
+			  document.getElementById("flag").src = "usa_flag.png";
+			  
+			  
+			}
+			else
+			if( Lang ==  "?Lang=GE" ){
+			  console.log("Lang(2) = " + Lang);
+			  
+			  document.getElementById("bmuli").href = "index.html?Lang=EN";
+			  document.getElementById("flag").src = "geo_flag.png";
+			  
+			  
+			}			
+			
+			var Job_Aplication_EN = "სამუშაო განაცხადის ფორმა";
+			var Job_Aplication_GE = "Job Application Form";
+			
+			var Thank_EN = "გმადლობთ ჩვენთან მუშაობის დაინტერესებისთვის. გთხოვთ, შეამოწმოთ ქვემოთ არსებული სამუშაო შესაძლებლობები, რომლებიც აკმაყოფილებენ თქვენს კრიტერიუმებს და გამოაგზავნოთ განაცხადი სამუშაოს განაცხადის ფორმის შევსებით.";
+			var Thank_GE = "Thank you for your interest in working with us. Please check below for available job opportunities that meet your criteria and send your application by filling out the Job Application Form.";
+			
+			var Name_EN = "სახელი";
+			var Name_GE = "Name";
+			
+			var Fname_EN = "სახელი";
+			var Fname_GE = "First";
+			
+			var Lname_EN = "გვარი";
+			var Lname_GE = "Last";
+			
+			var Email_EN = "ელ. ფოსტა";
+			var Email_GE = "Email";
+			
+			var Phone_EN = "ტელეფონი";
+			var Phone_GE = "Phone";
+			
+			var What_EN = "რა თანამდებობაზე აკეთებთ განაცხადს?";
+			var What_GE = "What position are you applying for?";
+			
+			var Start_date_EN = "დაწყების სასურველი თარიღის";
+			var Start_date_GE = "Available start date";
+			
+			var Empoiment_status_EN = "როგორია თქვენი ამჟამინდელი დასაქმების სტატუსი?";
+			var Empoiment_status_GE = "What is your current employment status?";
+			
+			var Employed_EN = "დასაქმებული";
+			var Employed_GE = "Employed";
+			
+			var Self_Employed_EN = "თვითდასაქმებული";
+			var Self_Employed_GE = "Self-Employed";
+			
+			var Unemployed_EN = "უმუშევარი";
+			var Unemployed_GE = "Unemployed";
+			
+			var Student_EN = "სტუდენტი";
+			var Student_GE = "Student";
+			
+			var attach_file_EN = "გაგზავნეთ თქვენი რეზიუმე URL-ის მიწოდებით ან ფაილის მიმაგრებით:";
+		    var attach_file_GE = "Submit your resume by providing your resume URL or attach file:";
+			
+			var References_EN = "გსურთ ჩამოთვალოთ ცნობები";
+			var References_GE = "Would you like to list references";
+			
+			var Yes_EN = "დიახ";
+			var Yes_GE = "Yes";
+			
+			var No_EN = "არა";
+			var No_GE = "No";
+			
+			var Applay_EN = "მიმართეთ სამუშაოს";
+			var Applay_GE = "Apply For The Job";
+		  </script>
+        </div>
+		
+        <p class="top-info" id="Thank">
+		<!--Thank you for your interest in working with us. Please check below for available job opportunities that meet your criteria and send your application by filling out the Job Application Form.-->
+		</p>
+		
+        <div class="item">
+          <p><span id="FLname">Name</span><span class="required">*</span></p>
+          <div class="name-item">
+            <input type="text" name="Fname" id="Fname" placeholder="First" required/>
+            <input type="text" name="Lname" id="Lname" placeholder="Last" required/>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="item">
+            <p><span id="Email">Email</span><span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+          <div class="item">
+            <p><span id="Phone">Phone</span><span class="required">*</span></p>
+            <input type="text" name="name" required/>
+          </div>
+        </div>
+        <div class="position-item">
+          <div class="item">
+            <p><span id="What_Job">What position are you applying for?</span><span class="required">*</span></p>
+            <select required>
+              <option value="1">Job 1</option>
+              <option value="2">Job 2</option>
+              <option value="3">Job 3</option>
+              <option value="4">Job 4</option>
+              <option value="5">Job 5</option>
+            </select>
+          </div>
+          <div class="item">
+            <p><span id="Start_Date">Available start date</span><span class="required">*</span></p>
+            <input type="date" name="bdate" required/>
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+        </div>
+        <div class="question">
+          <p><span id="Empoymnt_Status">What is your current employment status?</span><span class="required">*</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_1" name="status" required/>
+              <label for="radio_1" class="radio"><span id="R_1">Employed</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_2" name="status" required/>
+              <label for="radio_2" class="radio"><span id="R_2">Self-Employed</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_3" name="status" required/>
+              <label for="radio_3" class="radio"><span id="R_3">Unemployed</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_4" name="status" required/>
+              <label for="radio_4" class="radio"><span id="R_4">Student</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <p><span id="Attach_File">Submit your resume by providing your resume URL or attach file:</span></p>
+          <input type="text" name="providing"/>
+  <input type="file" name="file" accept="file/*">
+        </div>
+        <div class="question">
+          <p><span id="Referens">Would you like to list references</span></p>
+          <div class="question-answer">
+            <div>
+              <input type="radio" value="none" id="radio_5" name="references" />
+              <label for="radio_5" class="radio"><span id="Y">Yes</span></label>
+            </div>
+            <div>
+              <input type="radio" value="none" id="radio_6" name="references" />
+              <label for="radio_6" class="radio"><span id="N">No</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="btn-block">
+          <button type="submit" href="/"><span id="Applay">Apply For The Job</span></button>
+        </div>
+		<script>
+			if( Lang ==  "?Lang=GE"  ){
+			  document.getElementById("Job").innerHTML = Job_Aplication_GE;
+			  document.getElementById("Thank").innerHTML = Thank_GE;
+			  document.getElementById("FLname").innerHTML = Name_GE;
+			  document.getElementById("Fname").placeholder = Fname_GE;
+			  document.getElementById("Lname").placeholder = Lname_GE;
+			  document.getElementById("Email").innerHTML = Email_GE;
+			  document.getElementById("Phone").innerHTML = Phone_GE;
+			  document.getElementById("What_Job").innerHTML = What_GE
+			  document.getElementById("Start_Date").innerHTML = Start_date_GE;
+			  document.getElementById("Empoymnt_Status").innerHTML = Empoiment_status_GE;
+			  document.getElementById("R_1").innerHTML = Employed_GE;
+			  document.getElementById("R_2").innerHTML = Self_Employed_GE;
+			  document.getElementById("R_3").innerHTML = Unemployed_GE;
+			  document.getElementById("R_4").innerHTML = Student_GE;
+			  document.getElementById("Attach_File").innerHTML = attach_file_GE;
+			  document.getElementById("Referens").innerHTML = References_GE;
+			  document.getElementById("Y").innerHTML = Yes_GE;
+			  document.getElementById("N").innerHTML = No_GE;
+			  document.getElementById("Applay").innerHTML = Applay_GE;
+			  //document.getElementById("").innerHTML = _GE;
+			}
+			else
+			if( Lang ==  "?Lang=EN" ){
+			  document.getElementById("Job").innerHTML = Job_Aplication_EN;
+			  document.getElementById("Thank").innerHTML = Thank_EN;
+			  document.getElementById("FLname").innerHTML = Name_EN;
+			  document.getElementById("Fname").placeholder = Fname_EN;
+			  document.getElementById("Lname").placeholder = Lname_EN;
+			  document.getElementById("Email").innerHTML = Email_EN;
+			  document.getElementById("Phone").innerHTML = Phone_EN;
+			  document.getElementById("What_Job").innerHTML = What_EN
+			  document.getElementById("Start_Date").innerHTML = Start_date_EN;
+			  document.getElementById("Empoymnt_Status").innerHTML = Empoiment_status_EN;
+			  document.getElementById("R_1").innerHTML = Employed_EN;
+			  document.getElementById("R_2").innerHTML = Self_Employed_EN;
+			  document.getElementById("R_3").innerHTML = Unemployed_EN;
+			  document.getElementById("R_4").innerHTML = Student_EN;
+			  document.getElementById("Attach_File").innerHTML = attach_file_EN;
+			  document.getElementById("Referens").innerHTML = References_EN;
+			  document.getElementById("Y").innerHTML = Yes_EN;
+			  document.getElementById("N").innerHTML = No_EN;
+			  document.getElementById("Applay").innerHTML = Applay_EN;
+			  //document.getElementById("").innerHTML = _EN;
+			}
+		</script>
+      </form>
+    </div>
+  </body>
+</html>
